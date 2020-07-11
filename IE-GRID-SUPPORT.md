@@ -3,8 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [Can I use CSS Grid in IE?](#can-i-use-css-grid-in-ie)
-- [Suggested articles](#suggested-articles)
-- [Grid No-autoplacement support in IE](#grid-no-autoplacement-support-in-ie)
+- [Suggested articles and resources](#suggested-articles-and-resources)
   - [No-autoplacement limitations](#no-autoplacement-limitations)
     - [Both columns and areas need to be defined](#both-columns-and-areas-need-to-be-defined)
     - [Repeat auto-fit and auto-fill are not supported](#repeat-auto-fit-and-auto-fill-are-not-supported)
@@ -28,18 +27,17 @@ If the `grid` option is set to `"autoplace"` or `"no-autoplace"`, Autoprefixer w
 
 You will need to test **every grid layout in IE**. Even though it may require some extra testing, this is still a very useful tool for achieving IE support with modern CSS Grid code. Many companies around the world are already using this feature in production, like Financial Times and Yandex.
 
-## Suggested articles
+## Suggested articles and resources
 
-In addition to the documentation, here you can found some useful additional articles about the topic:
+In addition to the information found in this documentation, the following articles and resources contain more information that will help you successfully use CSS Grid in IE:
 
-- [The definitive guide about Grids in IE and Autoprefixer].
+- [The definitive 4 part guide about how to use CSS Grid in IE] ([Part 2] being especially useful).
 - [Rachel Andrew article], outdated but still worth a read.
-- [`postcss-gap-properties`] to use new `gap` property
-  instead of old `grid-gap`.
-- [`postcss-grid-kiss`] has alternate “everything in one property“ syntax,
-  which makes using Autoprefixer’s Grid translations safer.
+- [`postcss-gap-properties`] to use new `gap` property instead of old `grid-gap`.
+- [`postcss-grid-kiss`] has alternate "everything in one property" syntax, which makes using Autoprefixer's Grid translations a bit safer.
 
-[the definitive guide about grids in ie and autoprefixer]: https://css-tricks.com/css-grid-in-ie-css-grid-and-the-new-autoprefixer/
+[the definitive 4 part guide about how to use css grid in ie]: https://css-tricks.com/css-grid-in-ie-debunking-common-ie-grid-misconceptions/
+[part 2]: https://css-tricks.com/css-grid-in-ie-css-grid-and-the-new-autoprefixer/
 [rachel andrew article]: https://rachelandrew.co.uk/archives/2016/11/26/should-i-try-to-use-the-ie-implementation-of-css-grid-layout/
 [`postcss-gap-properties`]: https://github.com/jonathantneal/postcss-gap-properties
 [`postcss-grid-kiss`]: https://github.com/sylvainpolletvillard/postcss-grid-kiss
