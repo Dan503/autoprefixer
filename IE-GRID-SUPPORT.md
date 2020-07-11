@@ -2,7 +2,7 @@
 
 ## Contents <!-- omit in toc -->
 
-- [Can I use grid layout in IE?](#can-i-use-grid-layout-in-ie)
+- [Can I use CSS Grid in IE?](#can-i-use-css-grid-in-ie)
 - [Suggested articles](#suggested-articles)
 - [Grid No-autoplacement support in IE](#grid-no-autoplacement-support-in-ie)
   - [No-autoplacement limitations](#no-autoplacement-limitations)
@@ -18,9 +18,15 @@
     - [Do not create `::before` and `::after` pseudo elements](#do-not-create-before-and-after-pseudo-elements)
     - [When changing the `grid gap` value, columns and rows must be re-declared](#when-changing-the-grid-gap-value-columns-and-rows-must-be-re-declared)
 
-## Can I use grid layout in IE?
+## Can I use CSS Grid in IE?
 
-If the `grid` option in set to `"autoplace"` or `"no-autoplace"` Autoprefixer will be able to translate your grid layout to support IE 10 and IE 11 browsers. In the actual state, Autoprefixer can translate in an IE friendly code most of the grid layouts, but at this time there still some translations that are not possibile (`eg. grid-auto-columns, grid-autor-rows...`) or limited (`eg. grid-gap...`). Remeber that this feature is not an enable and forget feature, you need to test **every grid layout fix in IE**, but it still very useful. Many companies use this in production, like Financial Times and Yandex.
+Yes... with some limitations.
+
+If the `grid` option is set to `"autoplace"` or `"no-autoplace"`, Autoprefixer will be able to automatically translate your modern CSS Grid code into something that that Internet Explorer 10 and 11 (IE) can understand. Autoprefixer is limited by what the IE rendering engine is capable of replicating though. This means that there are still some translations that will _never_ be possible (eg. `grid-auto-columns` and `grid-auto-rows`).
+
+**This is not a feature that you can just enable and then forget about!**
+
+You will need to test **every grid layout in IE**. Even though it may require some extra testing, this is still a very useful tool for achieving IE support with modern CSS Grid code. Many companies around the world are already using this feature in production, like Financial Times and Yandex.
 
 ## Suggested articles
 
