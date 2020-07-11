@@ -1,30 +1,22 @@
 # Grid IE support
 
-## Contents
-
-- [Contents](#contents)
+## Contents <!-- omit in toc -->
 
 - [Can I use grid layout in IE?](#can-i-use-grid-layout-in-ie)
-
 - [Suggested articles](#suggested-articles)
-
 - [Grid No-autoplacement support in IE](#grid-no-autoplacement-support-in-ie)
-
-- [No-autoplacement limitations](#no-autoplacement-limitations)
-
-  - [Both columns and areas need be defined](#both-columns-and-areas-need-be-defined)
-  - [Repeat auto-fit and auto-fill are not supported](#repeat-auto-fit-auto-fill-are-not-supported)
-  - [When changing the `grid gap` value, columns and areas need to be re-declared](#when-changing-the-grid-gap-value-columns-and-areas-need-to-be-re-declared)
-
-- [Beware of enabling autoplacement in old projects](#beware-of-enabling-autoplacement-in-old-projects)
-
-- [Autoplacement limitations](#autoplacement-limitations)
-
-  - [Both columns and rows must be defined](#both-columns-and-rows-must-be-defined)
-  - [Repeat auto-fit and auto-fill are not supported](#repeat-auto-fit-and-auto-fill-are-not-supported)
-  - [No manual cell placement or column/row spans allowed inside an autoplacement grid](#no-manual-cell-placement-or-columnrow-spans-allowed-inside-an-autoplacement-grid)
-  - [Do not create `::before` and `::after` pseudo elements](#do-not-create-before-and-after-pseudo-elements)
-  - [When changing the `grid gap` value, columns and rows must be re-declared](#when-changing-the-grid-gap-value-columns-and-rows-must-be-re-declared)
+  - [No-autoplacement limitations](#no-autoplacement-limitations)
+    - [Both columns and areas need to be defined](#both-columns-and-areas-need-to-be-defined)
+    - [Repeat auto-fit and auto-fill are not supported](#repeat-auto-fit-and-auto-fill-are-not-supported)
+    - [When changing the `grid gap` value, columns and areas need to be re-declared](#when-changing-the-grid-gap-value-columns-and-areas-need-to-be-re-declared)
+- [Grid Autoplacement support in IE](#grid-autoplacement-support-in-ie)
+  - [Beware of enabling autoplacement in old projects](#beware-of-enabling-autoplacement-in-old-projects)
+  - [Autoplacement limitations](#autoplacement-limitations)
+    - [Both columns and rows must be defined](#both-columns-and-rows-must-be-defined)
+    - [Repeat auto-fit and auto-fill are not supported](#repeat-auto-fit-and-auto-fill-are-not-supported-1)
+    - [No manual cell placement or column/row spans allowed inside an autoplacement grid](#no-manual-cell-placement-or-columnrow-spans-allowed-inside-an-autoplacement-grid)
+    - [Do not create `::before` and `::after` pseudo elements](#do-not-create-before-and-after-pseudo-elements)
+    - [When changing the `grid gap` value, columns and rows must be re-declared](#when-changing-the-grid-gap-value-columns-and-rows-must-be-re-declared)
 
 ## Can I use grid layout in IE?
 
