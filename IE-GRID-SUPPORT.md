@@ -4,10 +4,14 @@
 
 - [Can I use CSS Grid in IE?](#can-i-use-css-grid-in-ie)
 - [Suggested articles and resources](#suggested-articles-and-resources)
-  - [No-autoplacement limitations](#no-autoplacement-limitations)
-    - [Both columns and areas need to be defined](#both-columns-and-areas-need-to-be-defined)
-    - [Repeat auto-fit and auto-fill are not supported](#repeat-auto-fit-and-auto-fill-are-not-supported)
-    - [When changing the `grid gap` value, columns and areas need to be re-declared](#when-changing-the-grid-gap-value-columns-and-areas-need-to-be-re-declared)
+- [Enabling CSS Grid translations](#enabling-css-grid-translations)
+  - [PostCSS options object](#postcss-options-object)
+  - [Control comments in your CSS file](#control-comments-in-your-css-file)
+  - [An environment variable](#an-environment-variable)
+- [No-autoplacement limitations](#no-autoplacement-limitations)
+  - [Both columns and areas need to be defined](#both-columns-and-areas-need-to-be-defined)
+  - [Repeat auto-fit and auto-fill are not supported](#repeat-auto-fit-and-auto-fill-are-not-supported)
+  - [When changing the `grid gap` value, columns and areas need to be re-declared](#when-changing-the-grid-gap-value-columns-and-areas-need-to-be-re-declared)
 - [Grid Autoplacement support in IE](#grid-autoplacement-support-in-ie)
   - [Beware of enabling autoplacement in old projects](#beware-of-enabling-autoplacement-in-old-projects)
   - [Autoplacement limitations](#autoplacement-limitations)
@@ -41,6 +45,78 @@ In addition to the information found in this documentation, the following articl
 [rachel andrew article]: https://rachelandrew.co.uk/archives/2016/11/26/should-i-try-to-use-the-ie-implementation-of-css-grid-layout/
 [`postcss-gap-properties`]: https://github.com/jonathantneal/postcss-gap-properties
 [`postcss-grid-kiss`]: https://github.com/sylvainpolletvillard/postcss-grid-kiss
+
+## Enabling CSS Grid translations
+
+Autoprefixer has CSS Grid translations disabled by default. This is because Autoprefixer's Grid translations should only be used by people who understand what the limitations are and are willing to work within those limitations. That is why it is an opt-in model rather than opt-out.
+
+There are a few ways that you can enable CSS Grid translations in Autoprefixer.
+
+### PostCSS options object
+
+```js
+autoprefixer({ grid: "autoplace" });
+```
+
+The PostCSS options object can accept a `grid` property that accepts one of 3 values:
+
+- `false` (default): Prevent Autoprefixer from outputting CSS Grid translations.
+- `"autoplace"` (recommend): Enable Autoprefixer CSS Grid translations _including_ Autoprefixers limited autoplacement support.
+- `"no-autoplace"`: Enable Autoprefixer CSS Grid translations but _excluding_ Autoprefixers limited autoplacement support.
+
+### Control comments in your CSS file
+
+```css
+/* autoprefixer grid: autoplace */
+
+html {
+  /* CSS styles */
+}
+```
+
+If you are using a preprocessor like [SCSS](https://sass-lang.com/), make sure that the compiler isn't stripping out the comment before Autoprefixer has a chance to read it.
+
+```scss
+// This does not work because SCSS strips out the comment
+// autoprefixer grid: autoplace
+
+html {
+  // SCSS styles
+}
+```
+
+```scss
+// This WILL work because the comment is retained in the output CSS
+/* autoprefixer grid: autoplace */
+
+html {
+  // SCSS styles
+}
+```
+
+Valid Control comments for controlling CSS Grid are:
+
+- `/* autoprefixer grid: off */` (default): Disable CSS Grid translations.
+- `/* autoprefixer grid: autoplace */` (recommend): Enable CSS Grid translations and _enable_ limited autoplacement support
+- `/* autoprefixer grid: no-autoplace */`: Enable CSS Grid translations and _disable_ limited autoplacement support
+
+Find out more about control comments in the [control comments documentation](https://github.com/postcss/autoprefixer#control-comments).
+
+### An environment variable
+
+```
+AUTOPREFIXER_GRID=autoplace
+```
+
+Some programs like [Create React App] do not give you easy access to the configuration files and if you are using a CSS-in-JS styling solution like [JSS] you will not be able to add control comments to your code. This is when using an environment variable is the best option.
+
+For information on how to implement the environment variable, see the [environment variables documentation].
+
+> (**@ai** would it make sense to move the environment variables documentation into this file?)
+
+[create react app]: https://create-react-app.dev/docs/getting-started
+[jss]: https://cssinjs.org/
+[environment variables documentation]: https://github.com/postcss/autoprefixer#environment-variables
 
 ## Grid No-autoplacement support in IE
 
@@ -191,9 +267,9 @@ In addition, you can simply change the `grid-template` or `grid-template-areas` 
 }
 ```
 
-### No-autoplacement limitations
+## No-autoplacement limitations
 
-#### Both columns and areas need to be defined
+### Both columns and areas need to be defined
 
 As mentioned before in the introduction, both `grid-template-areas` and `grid-template-columns` need to be defined.
 
@@ -210,7 +286,7 @@ As mentioned before in the introduction, both `grid-template-areas` and `grid-te
 }
 ```
 
-#### Repeat auto-fit and auto-fill are not supported
+### Repeat auto-fit and auto-fill are not supported
 
 The `repeat(auto-fit, ...)` and `repeat(auto-fill, ...)` grid functionality relies on
 knowledge from the browser about screen dimensions and the number of available grid
@@ -224,7 +300,7 @@ so unfortunately this little snippet will _never_ be IE friendly.
 }
 ```
 
-#### When changing the `grid gap` value, columns and areas need to be re-declared
+### When changing the `grid gap` value, columns and areas need to be re-declared
 
 If you wish to change the size of a `grid-gap`, you will need to redeclare the grid columns and areas, for the mainly reason that Autoprefixer cannot inherit safetly the `grid` properties without the risk to break the layout in the final translations.
 
